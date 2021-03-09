@@ -1,0 +1,51 @@
+package tn.esprit.spring.Entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="T_Status")
+public class Status {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int idStatus;
+	private String status;
+
+	//*****************************************************
+	public Status(String status) {
+		super();
+		this.status = status;
+	}
+
+	//*****************************************************
+	public Status() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	//*****************************************************
+
+	public int getIdStatus() {
+		return idStatus;
+	}
+
+	public void setIdStatus(int idStatus) {
+		this.idStatus = idStatus;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	//*****************************************************
+	
+	
+
+}
