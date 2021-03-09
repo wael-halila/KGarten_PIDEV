@@ -26,7 +26,7 @@ public class Comment {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comment(String comment, int nLike, int nDislike) {
+	public Comment(String commentt, int nLike, int nDislike) {
 		super();
 		this.commentt= commentt;
 		this.nLike = nLike;
