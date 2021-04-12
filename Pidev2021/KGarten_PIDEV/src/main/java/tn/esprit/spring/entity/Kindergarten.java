@@ -36,6 +36,26 @@ public class Kindergarten implements Serializable {
 	private LocalDate blockDate;
 	private LocalDate unBlockDate;
 	 private String telNum;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+	public Kindergarten(Long id, String name, String mail, boolean isBlocked, LocalDate blockDate,
+			LocalDate unBlockDate, String telNum, User user, List<Claim> claim) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.mail = mail;
+		this.isBlocked = isBlocked;
+		this.blockDate = blockDate;
+		this.unBlockDate = unBlockDate;
+		this.telNum = telNum;
+		this.user = user;
+		this.claim = claim;
+	}
+
+
 	public String getTelNum() {
 		return telNum;
 	}

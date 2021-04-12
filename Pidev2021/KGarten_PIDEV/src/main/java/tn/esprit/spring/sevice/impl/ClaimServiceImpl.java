@@ -7,10 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.twilio.Twilio;
+import com.twilio.exception.TwilioException;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
@@ -50,8 +52,8 @@ public class ClaimServiceImpl implements IClaimService{
 	KindergartenRepository kinderrepo; 
 	
 
-	 private final static String ACCOUNT_SID = "AC6241403c506f64570e2eead5494891f0";
-	   private final static String AUTH_ID = "2d6c0633c8bd526f6919c27dbefd0530";
+	 private final static String ACCOUNT_SID = "AC0c7b0c46bc306f365c7af7f84a6e7f02";
+	   private final static String AUTH_ID = "389f4f18de234de29981dd6bbf103b98";
 
 	@Override
 	public long addClaim(Claim claim) {
@@ -236,10 +238,19 @@ public class ClaimServiceImpl implements IClaimService{
 			
 				k.setBlocked(false);
 				userepo.save(us);
+				try {
+					Twilio.init(ACCOUNT_SID, AUTH_ID);
+					Message.creator(new PhoneNumber(k.getTelNum()), new PhoneNumber("+15592060840"),
+			                "Your account has been Unblocked succesfuly.").create();
 
-				Twilio.init(ACCOUNT_SID, AUTH_ID);
-				Message.creator(new PhoneNumber(k.getTelNum()), new PhoneNumber("+18563932333"),
-				  "Dear Kindergarten  Your subscription with us is unblocked now, please respect our conditions to keep your kindergarden on our platform.").create();
+			    }
+			    catch (TwilioException e) {
+			        System.out.println("An error occured from twillio."+e.getMessage());
+			    }
+			
+	}
+		
+					
 
 		
 	}
